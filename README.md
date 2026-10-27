@@ -12,6 +12,40 @@ https://raw.githubusercontent.com/JustCnc/cpa_plugins/main/registry.json
 
 CLIProxyAPI 内置的官方源始终保留，本仓库只是额外追加的一个源。
 
+## 仓库结构
+
+```text
+cpa_plugins/
+├── registry.json   # 插件源清单
+└── raccoon2api/    # git submodule → JustCnc/raccoon2api
+```
+
+`raccoon2api/` 是指向
+[https://github.com/JustCnc/raccoon2api](https://github.com/JustCnc/raccoon2api)
+的 git submodule，只作为插件源码的只读参照，存放当前 `registry.json` 里声明的
+插件版本所对应的提交；实际发版仍在插件仓库里进行。
+
+克隆本仓库时一并拉取插件源码：
+
+```bash
+# 首次克隆
+git clone --recurse-submodules git@github.com:JustCnc/cpa_plugins.git
+
+# 已有克隆
+git submodule update --init --recursive
+```
+
+插件发版后如需把本仓库的子模块指针同步到新提交：
+
+```bash
+git -C raccoon2api fetch origin
+git -C raccoon2api checkout <release-commit>
+git add raccoon2api && git commit -m "chore: bump raccoon2api submodule"
+```
+
+本机开发的插件工作副本仍放在 `C:\Users\test\Desktop\cpa\raccoon2api`，与本仓库的
+子模块相互独立，不要在这个子模块目录里做开发改动。
+
 ## 在 CPA 中使用
 
 在 CPA 的 `config.yaml` 中：
@@ -93,7 +127,8 @@ Release，不需要修改本仓库的 `registry.json`。Release 必须满足：
    `repository` 必须是 `https://github.com/{owner}/{repo}`（不要带结尾斜杠）。
 3. 确认插件仓库的最新 Release 已经有上面约定好的 `<id>_<version>_<goos>_<goarch>.zip`
    和 `checksums.txt`。
-4. 不要在本仓库提交二进制；只提交 `registry.json` 和必要的说明。
+4. 不要在本仓库提交二进制；只提交 `registry.json` 和必要的说明。若还需要在本仓库
+   保留插件源码参照，用 git submodule 指向插件仓库，不要复制源码。
 5. 提交并推送后，原始 URL 会更新；CPA 刷新插件商店即可看到。
 
 ## 说明
