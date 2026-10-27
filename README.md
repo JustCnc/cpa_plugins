@@ -70,6 +70,9 @@ Release，不需要修改本仓库的 `registry.json`。Release 必须满足：
 [`.github/workflows/release.yml`](https://github.com/JustCnc/raccoon2api/blob/main/.github/workflows/release.yml)
 自动生成上述 zip 和 `checksums.txt`。
 
+`raccoon2api` 的完整操作步骤（tag、Release、资产校验、registry 更新）见
+[RELEASING.md](https://github.com/JustCnc/raccoon2api/blob/main/RELEASING.md)。
+
 ## 新增插件
 
 1. 在 `registry.json` 的 `plugins` 数组末尾追加一个对象，至少包含：
