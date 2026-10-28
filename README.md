@@ -17,7 +17,8 @@ CLIProxyAPI 内置的官方源始终保留，本仓库只是额外追加的一�
 ```text
 cpa_plugins/
 ├── registry.json   # 插件源清单
-└── raccoon2api/    # git submodule → JustCnc/raccoon2api
+├── raccoon2api/    # git submodule → JustCnc/raccoon2api
+└── autoclaw2api/   # git submodule → JustCnc/autoclaw2api
 ```
 
 `raccoon2api/` 是指向
@@ -66,9 +67,14 @@ plugins:
 | id | 名称 | 仓库 | 平台 |
 | --- | --- | --- | --- |
 | `raccoon2api` | Raccoon2API | [JustCnc/raccoon2api](https://github.com/JustCnc/raccoon2api) | `linux/amd64`、`linux/arm64`、`windows/amd64` |
+| `autoclaw2api` | AutoClaw2API | [JustCnc/autoclaw2api](https://github.com/JustCnc/autoclaw2api) | `linux/amd64`、`linux/arm64`、`windows/amd64` |
 
 `raccoon2api` 把商汤小浣熊（`xiaohuanxiong.com`）的 LLM 网关接入 CLIProxyAPI，
 对外提供 OpenAI 兼容的 `/v1/chat/completions`、`/v1/models`，并带账号池和内嵌控制台。
+
+`autoclaw2api` 把 AutoClaw 桌面端的托管模型网关（GLM-5.3 / Z.ai）接入 CLIProxyAPI，
+出站请求按桌面客户端指纹构造，带账号池、token 自动续期、手机号授权登录页，
+并按上游实测的请求限额做了本地令牌桶。
 
 ## 发版约定
 
@@ -100,12 +106,13 @@ Release，不需要修改本仓库的 `registry.json`。Release 必须满足：
   `<id>.dll` / `<id>.dylib`。不要嵌套目录，也不要放多个动态库。
 
 `registry.json` 里的 `version` 是可选的展示兜底；正常以最新 Release 的 tag 为准。
-`raccoon2api` 的发版由
-[`.github/workflows/release.yml`](https://github.com/JustCnc/raccoon2api/blob/main/.github/workflows/release.yml)
-自动生成上述 zip 和 `checksums.txt`。
+每个插件的发版都由各自仓库的 `.github/workflows/release.yml` 自动生成上述 zip 和
+`checksums.txt`：
 
-`raccoon2api` 的完整操作步骤（tag、Release、资产校验、registry 更新）见
-[RELEASING.md](https://github.com/JustCnc/raccoon2api/blob/main/RELEASING.md)。
+- [JustCnc/raccoon2api](https://github.com/JustCnc/raccoon2api/blob/main/.github/workflows/release.yml)
+- [JustCnc/autoclaw2api](https://github.com/JustCnc/autoclaw2api/blob/main/.github/workflows/release.yml)
+
+完整操作步骤（tag、Release、资产校验、registry 更新）见各自的 `RELEASING.md`。
 
 ## 新增插件
 

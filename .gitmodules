@@ -1,3 +1,6 @@
 [submodule "raccoon2api"]
 	path = raccoon2api
 	url = https://github.com/JustCnc/raccoon2api.git
+[submodule "autoclaw2api"]
+	path = autoclaw2api
+	url = https://github.com/JustCnc/autoclaw2api.git
