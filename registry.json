@@ -19,7 +19,7 @@
       "name": "AutoClaw2API",
       "description": "AutoClaw desktop (GLM / Z.ai) provider for CLIProxyAPI: OpenAI-compatible chat-completions and models, account pool, desktop-grade request fingerprint and a built-in phone login page.",
       "author": "JustCnc",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "repository": "https://github.com/JustCnc/autoclaw2api",
       "homepage": "https://github.com/JustCnc/autoclaw2api",
       "tags": [
