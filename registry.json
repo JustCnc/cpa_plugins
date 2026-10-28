@@ -6,7 +6,7 @@
       "name": "Raccoon2API",
       "description": "SenseTime Xiaohuanxiong (小浣熊) provider for CLIProxyAPI, exposing an OpenAI-compatible endpoint with account pool, quota checks and a built-in console.",
       "author": "JustCnc",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "repository": "https://github.com/JustCnc/raccoon2api",
       "homepage": "https://github.com/JustCnc/raccoon2api",
       "tags": [
