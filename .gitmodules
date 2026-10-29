@@ -4,3 +4,6 @@
 [submodule "autoclaw2api"]
 	path = autoclaw2api
 	url = https://github.com/JustCnc/autoclaw2api.git
+[submodule "magic2api"]
+	path = magic2api
+	url = https://github.com/JustCnc/magic2api.git
